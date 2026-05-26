@@ -88,6 +88,8 @@ app_license = "mit"
 # before_install = "tdn_print_manager.install.before_install"
 # after_install = "tdn_print_manager.install.after_install"
 
+after_migrate = "tdn_print_manager.setup.install.setup_custom_fields"
+
 # Uninstallation
 # ------------
 
