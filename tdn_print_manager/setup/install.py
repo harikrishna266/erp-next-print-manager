@@ -19,4 +19,19 @@ def setup_custom_fields():
                 "insert_after": "custom_specifications",
             },
         ],
+        "Quotation Item": [
+            {
+                "fieldname": "custom_item_specifications_section",
+                "label": "Specifications",
+                "fieldtype": "Section Break",
+                "insert_after": "image_view",
+            },
+            {
+                "fieldname": "custom_item_specifications",
+                "label": "Item Specifications",
+                "fieldtype": "Table",
+                "options": "Quotation Item Specification",
+                "insert_after": "custom_item_specifications_section",
+            },
+        ],
     })

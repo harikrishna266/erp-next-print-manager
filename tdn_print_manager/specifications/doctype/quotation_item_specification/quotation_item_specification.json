@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "creation": "2026-05-26 13:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "specification_type",
+  "specification_value"
+ ],
+ "fields": [
+  {
+   "fieldname": "specification_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Specification Type",
+   "options": "Specification Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "specification_value",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Specification Value",
+   "options": "Specification Value",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-26 13:00:00",
+ "modified_by": "Administrator",
+ "module": "Specifications",
+ "name": "Quotation Item Specification",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
