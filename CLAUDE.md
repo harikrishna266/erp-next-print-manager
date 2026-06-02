@@ -31,6 +31,26 @@ The app is **early-stage**. Only the **Specifications** module is built so far
 fields). The `api/`, `pricing/`, `production/`, and `overrides/` modules
 described in the findings doc are **planned, not yet implemented**.
 
+### Deferred: Desk-side Quotation Item spec editing
+
+Editing per-line specs on a Quotation *in ERPNext Desk* does not work and is
+**deferred** — the data model is fine, only Desk editing is blocked.
+
+`custom_item_specifications` is a `Table` field on **Quotation Item** (a child
+doctype), so its grid renders *inside* the Quotation Item row-form. Frappe's
+single global `cur_grid` + freeze overlay can't handle a row-form nested in a
+row-form, so the row editor silently no-ops. This is a framework limitation,
+not an app bug: **no** standard doctype (0 of 341 in Frappe + ERPNext) puts a
+`Table` field on a child doctype. The same field works on **Item** only because
+Item is a top-level doctype.
+
+Deferring is safe because Quotations are created primarily in the **Angular
+app**, which writes this child table via the API and never touches the Desk
+grid (the findings doc rates the Desk spec widget low priority). Do **not**
+retry patching the grid (a `grid_fix.js` / `editable_grid` attempt was removed).
+If Desk editing is ever truly needed: build a custom injected-HTML widget in
+`quotation.js`, or reshape to a flat top-level table on the Quotation parent.
+
 ## Repository layout
 
 ```
@@ -43,7 +63,7 @@ tdn_print_manager/                 (git root — only THIS dir is committed)
     ├── modules.txt                registered modules
     ├── setup/install.py           custom-field setup (run via after_migrate)
     ├── specifications/doctype/    the only built module so far
-    └── public/js/grid_fix.js      desk-side JS (loaded via app_include_js)
+    └── public/                    static assets (css/js) — empty so far
 ```
 
 The surrounding `frappe-bench/` (bench infra, site data, venv) is **not** in
