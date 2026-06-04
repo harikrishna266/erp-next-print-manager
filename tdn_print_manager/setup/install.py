@@ -18,6 +18,35 @@ def setup_custom_fields():
                 "options": "Item Specification",
                 "insert_after": "custom_specifications",
             },
+            {
+                "fieldname": "custom_pricing_section",
+                "label": "Pricing",
+                "fieldtype": "Section Break",
+                "insert_after": "custom_item_specifications",
+            },
+            {
+                "fieldname": "custom_pricing_engine",
+                "label": "Pricing Engine",
+                "fieldtype": "Select",
+                "options": "Bundle Based\nArea Based",
+                "default": "Bundle Based",
+                "insert_after": "custom_pricing_section",
+            },
+            {
+                "fieldname": "custom_area_unit",
+                "label": "Area Unit",
+                "fieldtype": "Select",
+                "options": "Square Foot\nSquare Inch",
+                "default": "Square Foot",
+                "insert_after": "custom_pricing_engine",
+                "depends_on": "eval:doc.custom_pricing_engine=='Area Based'",
+            },
+            {
+                "fieldname": "custom_pricing_matrix",
+                "label": "Pricing Matrix",
+                "fieldtype": "Long Text",
+                "insert_after": "custom_area_unit",
+            },
         ],
         "Quotation Item": [
             {
